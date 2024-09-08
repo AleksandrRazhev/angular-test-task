@@ -1,0 +1,20 @@
+.header {
+  display: flex;
+  height: 100%;
+  background-color: var(--hover-color);
+}
+
+.nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.link {
+  color: var(--white-color);
+  text-transform: uppercase;
+}
+
+.active {
+  color: var(--accent-color);
+}

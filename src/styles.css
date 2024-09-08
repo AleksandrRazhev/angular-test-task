@@ -1,1 +1,22 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --white-color: #ffffff;
+  --black-color: #333333;
+  --main-color: #091757;
+  --accent-color: #e3ef41;
+  --background-color: #f7f7fa;
+  --text-color: #575b75;
+  --additional-color: #a4a7bc;
+  --hover-color: #495aa8;
+  --error-color: #ff2f3b;
+}
+
+.app {
+  min-height: 95vh;
+  display: grid;
+  grid-template-rows: 3rem 1fr;
+}
+
+.container {
+  margin: 0 auto;
+  width: clamp(320px, 90vw, 1920px);
+}
