@@ -1,3 +1,5 @@
+@import "./app/styles/normalize.css";
+
 :root {
   --white-color: #ffffff;
   --black-color: #333333;
@@ -8,6 +10,34 @@
   --additional-color: #a4a7bc;
   --hover-color: #495aa8;
   --error-color: #ff2f3b;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+p {
+  margin: 0;
+}
+
+label {
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
+
+input {
+  width: 100%;
+  padding: 0.25rem 0.5rem;
+}
+
+button {
+  padding: 0.5rem 1rem;
+  background: none;
+  border-radius: 0.25rem;
+  border: 1px solid var(--black-color);
+  background-color: var(--hover-color);
+  cursor: pointer;
 }
 
 .app {

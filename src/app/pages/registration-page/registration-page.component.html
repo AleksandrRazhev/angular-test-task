@@ -1,1 +1,23 @@
-<p>registration-page works!</p>
+<section>
+  <form class="form" [formGroup]="form" (ngSubmit)="submit()">
+    <label>
+      <p>Имя</p>
+      <p *ngIf="submited && username.errors" class="error">
+        Не менее одного символа
+      </p>
+      <input type="text" formControlName="username" placeholder="введите имя" />
+    </label>
+    <label>
+      <p>Пароль</p>
+      <p *ngIf="submited && password.errors" class="error">
+        {{ passwordError }}
+      </p>
+      <input
+        type="password"
+        formControlName="password"
+        placeholder="введите пароль"
+      />
+    </label>
+    <button>Войти</button>
+  </form>
+</section>
