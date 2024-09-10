@@ -7,28 +7,42 @@ import { User } from '../Models/User';
 })
 export class UserService {
   users: User[] | null = null;
+  currentUser: User | null = null;
   getAll() {
     const users = localStorage.getItem('users');
     if (!users) return (this.users = null);
     return (this.users = JSON.parse(users));
   }
-  authorization(currentUser: User): boolean {
+  authorization(user: User): boolean {
     if (!this.users) return true;
     const storedUser = this.users.find(
-      ({ username }) => username === currentUser.username
+      ({ username }) => username === user.username
     );
     if (!storedUser) return true;
-    if (storedUser && storedUser.password === currentUser.password) return true;
+    if (storedUser && storedUser.password === user.password) return true;
     return false;
   }
-  addUser(currentUser: User) {
-    if (!this.users) return (this.users = [currentUser]);
-    if (this.users.find(({ username }) => username === currentUser.username))
-      return;
-    return this.users.push(currentUser);
+  addUser(user: User) {
+    if (!this.users) return (this.users = [user]);
+    if (this.users.find(({ username }) => username === user.username)) return;
+    return this.users.push(user);
   }
   saveUsers() {
     if (!this.users) return;
     localStorage.setItem('users', JSON.stringify(this.users));
+  }
+  saveCurrentUser(user: User) {
+    localStorage.setItem('currentUser', JSON.stringify(user));
+  }
+  deleteCurrentUser() {
+    localStorage.removeItem('currentUser');
+  }
+  getCurrentUser(): User | null {
+    const storedUser = localStorage.getItem('currentUser');
+    if (storedUser) {
+      return (this.currentUser = JSON.parse(storedUser));
+    } else {
+      return (this.currentUser = null);
+    }
   }
 }
