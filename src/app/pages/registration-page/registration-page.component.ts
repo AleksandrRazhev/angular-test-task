@@ -6,6 +6,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-registration-page',
@@ -15,6 +16,7 @@ import {
   styleUrl: './registration-page.component.css',
 })
 export class RegistrationPageComponent {
+  constructor(private userService: UserService) {}
   submited: boolean = false;
   form = new FormGroup({
     username: new FormControl<string>('', [Validators.required]),
@@ -25,25 +27,14 @@ export class RegistrationPageComponent {
     if (!this.form.valid) return;
     const { username, password } = this.form.value;
     if (!username || !password) return;
-    const localUsers = localStorage.getItem('users');
-    if (!localUsers) {
-      localStorage.setItem('users', JSON.stringify([this.form.value]));
-      return;
+    const currentUser = { username, password };
+    this.userService.getAll();
+    if (this.userService.authorization(currentUser)) {
+      this.userService.addUser(currentUser);
+      this.userService.saveUsers();
+    } else {
+      this.password.setErrors({ invalidPassword: 'пароль не совпадает' });
     }
-    const users: { username: string; password: string }[] =
-      JSON.parse(localUsers);
-    const localUser = users.find((item) => item.username === username);
-    if (localUser) {
-      if (localUser.password !== password) {
-        console.log('password invalid');
-        this.password.setErrors({ invalidPassword: 'пароль не совпадает' });
-        return;
-      }
-      console.log('password valid');
-      return;
-    }
-    users.push({ username, password });
-    localStorage.setItem('users', JSON.stringify(users));
   }
   get username() {
     return this.form.controls.username;
