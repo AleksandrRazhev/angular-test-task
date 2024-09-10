@@ -1,14 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+
 import { UserService } from '../../services/user.service';
 import { AuthGuardService } from '../../services/auth-guard.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration-page',

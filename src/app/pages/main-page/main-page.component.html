@@ -1,6 +1,10 @@
 <section>
-  <div>
-    <button>Начать разговор</button>
-    <button>Окончить разговор</button>
+  <div class="record">
+    <p class="timer">
+      <span> Timer: </span>
+      {{ this.timerService.timer }}s
+    </p>
+    <button class="active" (click)="this.start()">Начать разговор</button>
+    <button (click)="this.stop()">Окончить разговор</button>
   </div>
 </section>
