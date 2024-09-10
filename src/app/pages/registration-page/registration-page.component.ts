@@ -7,6 +7,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { UserService } from '../../services/user.service';
+import { AuthGuardService } from '../../services/auth-guard.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration-page',
@@ -21,7 +23,11 @@ export class RegistrationPageComponent {
     this.form.controls.username.setValue(this.userService.currentUserName);
   }
 
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private authGuardService: AuthGuardService,
+    private router: Router
+  ) {}
 
   form = new FormGroup({
     username: new FormControl<string>('', [Validators.required]),
@@ -39,6 +45,8 @@ export class RegistrationPageComponent {
       this.userService.addUser(user);
       this.userService.saveUsers();
       this.userService.saveCurrentUser(user);
+      this.authGuardService.isLogged = true;
+      this.router.navigate(['/main']);
     } else {
       this.form.controls.password.setErrors({
         invalidPassword: 'пароль не совпадает',
