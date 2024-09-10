@@ -38,10 +38,7 @@ export class UserService {
   }
   get currentUserName(): string {
     const storedUser = localStorage.getItem('currentUser');
-    if (storedUser) {
-      return (JSON.parse(storedUser) as User)?.username ?? '';
-    } else {
-      return '';
-    }
+    if (storedUser) return (JSON.parse(storedUser) as User)?.username ?? '';
+    return '';
   }
 }
