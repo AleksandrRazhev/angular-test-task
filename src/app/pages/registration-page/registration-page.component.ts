@@ -18,9 +18,7 @@ import { UserService } from '../../services/user.service';
 export class RegistrationPageComponent {
   ngOnInit() {
     this.userService.getAll();
-    this.form.controls.username.setValue(
-      this.userService.getCurrentUser()?.username ?? ''
-    );
+    this.form.controls.username.setValue(this.userService.currentUserName);
   }
 
   constructor(private userService: UserService) {}

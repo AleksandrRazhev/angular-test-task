@@ -7,7 +7,6 @@ import { User } from '../Models/User';
 })
 export class UserService {
   users: User[] | null = null;
-  currentUser: User | null = null;
   getAll() {
     const users = localStorage.getItem('users');
     if (!users) return (this.users = null);
@@ -37,12 +36,12 @@ export class UserService {
   deleteCurrentUser() {
     localStorage.removeItem('currentUser');
   }
-  getCurrentUser(): User | null {
+  get currentUserName(): string {
     const storedUser = localStorage.getItem('currentUser');
     if (storedUser) {
-      return (this.currentUser = JSON.parse(storedUser));
+      return (JSON.parse(storedUser) as User)?.username ?? '';
     } else {
-      return (this.currentUser = null);
+      return '';
     }
   }
 }
