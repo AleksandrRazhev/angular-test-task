@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class AudioService {
   recorder: MediaRecorder | null = null;
-  private blob: BlobPart[] = [];
+  blob: BlobPart[] = [];
   private audioUrl: string = '';
   private audioElement: HTMLAudioElement = new Audio();
   isRecording: boolean = false;
@@ -14,6 +14,7 @@ export class AudioService {
     return navigator.mediaDevices.getUserMedia({ audio: true });
   }
   startRecord(mediaStream: MediaStream) {
+    if (this.isPlaying) return;
     if (this.audioUrl) URL.revokeObjectURL(this.audioUrl);
     this.recorder = new MediaRecorder(mediaStream);
     this.recorder.ondataavailable = (event) => {
@@ -28,14 +29,16 @@ export class AudioService {
       this.recorder.stop();
     }
   }
-  statPlay() {
+  statPlay(onEndedPlay?: () => void) {
     if (this.isRecording) return;
+    if (!this.blob[0]) return;
     const audioBlob = new Blob(this.blob, { type: 'audio/wav' });
     this.audioUrl = URL.createObjectURL(audioBlob);
     this.audioElement.src = this.audioUrl;
     this.isPlaying = true;
     this.audioElement.play();
     this.audioElement.onended = () => {
+      if (onEndedPlay) onEndedPlay();
       this.isPlaying = false;
     };
   }

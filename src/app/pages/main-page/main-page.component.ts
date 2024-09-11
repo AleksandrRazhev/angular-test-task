@@ -22,30 +22,32 @@ export class MainPageComponent {
     bottomButton: 'Нет записей',
   };
   async onClickTopButton() {
-    try {
-      const mediaStream = await this.audioService.startStream();
-      this.audioService.startRecord(mediaStream);
-      this.timerService.start();
-      this.textButtons.topButton = 'Запись...';
-      this.textButtons.bottomButton = 'Окончить разговор';
-    } catch (error) {
-      console.error("I can't record", error);
-    }
-  }
-  onClickBottomButton() {
     if (this.audioService.isRecording) {
       this.audioService.stopRecord();
       this.timerService.stop();
       this.textButtons.topButton = 'Начать разговор';
+    } else {
+      try {
+        const mediaStream = await this.audioService.startStream();
+        this.audioService.startRecord(mediaStream);
+        this.timerService.start();
+        this.textButtons.topButton = 'Окончить разговор';
+        this.textButtons.bottomButton = 'Воспроизвести запись';
+      } catch (error) {
+        console.error("I can't record", error);
+      }
+    }
+  }
+  onClickBottomButton() {
+    if (!this.audioService.blob[0]) return;
+    if (this.audioService.isPlaying) {
+      this.audioService.stopPlay();
       this.textButtons.bottomButton = 'Воспроизвести запись';
     } else {
-      if (this.audioService.isPlaying) {
-        this.audioService.stopPlay();
+      this.audioService.statPlay(() => {
         this.textButtons.bottomButton = 'Воспроизвести запись';
-      } else {
-        this.audioService.statPlay();
-        this.textButtons.bottomButton = 'Остановить воспроизведение';
-      }
+      });
+      this.textButtons.bottomButton = 'Остановить воспроизведение';
     }
   }
 }

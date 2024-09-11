@@ -6,13 +6,14 @@
     </p>
     <button
       [ngClass]="{ active: this.audioService.isRecording }"
-      [disabled]="this.audioService.isRecording"
+      [disabled]="this.audioService.isPlaying"
       (click)="this.onClickTopButton()"
     >
       {{ this.textButtons.topButton }}
     </button>
     <button
       [ngClass]="{ active: this.audioService.isPlaying }"
+      [disabled]="this.audioService.isRecording"
       (click)="this.onClickBottomButton()"
     >
       {{ this.textButtons.bottomButton }}
