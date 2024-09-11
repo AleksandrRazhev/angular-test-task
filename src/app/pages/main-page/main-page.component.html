@@ -1,22 +1,25 @@
 <section>
   <div class="record">
     <p class="timer">
-      <span> Timer: </span>
-      {{ this.timerService.timer }}s
+      <span>Таймер записи: </span>{{ recordTimerService.timer }}s
     </p>
     <button
-      [ngClass]="{ active: this.audioService.isRecording }"
-      [disabled]="this.audioService.isPlaying"
-      (click)="this.onClickTopButton()"
+      [ngClass]="{ active: audioService.isRecording }"
+      [disabled]="audioService.isPlaying"
+      (click)="onClickTopButton()"
     >
-      {{ this.textButtons.topButton }}
+      {{ textButtons.topButton }}
     </button>
+    <p class="timer">
+      <span>Таймер воспроизведения: </span>
+      {{ playTimerService.timer }}s
+    </p>
     <button
-      [ngClass]="{ active: this.audioService.isPlaying }"
-      [disabled]="this.audioService.isRecording"
-      (click)="this.onClickBottomButton()"
+      [ngClass]="{ active: audioService.isPlaying }"
+      [disabled]="audioService.isRecording"
+      (click)="onClickBottomButton()"
     >
-      {{ this.textButtons.bottomButton }}
+      {{ textButtons.bottomButton }}
     </button>
   </div>
 </section>

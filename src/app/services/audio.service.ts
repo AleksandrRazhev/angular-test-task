@@ -15,7 +15,7 @@ export class AudioService {
   }
   startRecord(mediaStream: MediaStream) {
     if (this.isPlaying) return;
-    if (this.audioUrl) URL.revokeObjectURL(this.audioUrl);
+    this.revokeURL();
     this.recorder = new MediaRecorder(mediaStream);
     this.recorder.ondataavailable = (event) => {
       this.blob = [event.data];
@@ -46,5 +46,8 @@ export class AudioService {
     this.audioElement.pause();
     this.audioElement.currentTime = 0;
     this.isPlaying = false;
+  }
+  revokeURL() {
+    if (this.audioUrl) URL.revokeObjectURL(this.audioUrl);
   }
 }

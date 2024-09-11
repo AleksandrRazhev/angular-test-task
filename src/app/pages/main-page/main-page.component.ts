@@ -8,15 +8,21 @@ import { NgClass } from '@angular/common';
 @Component({
   selector: 'app-main-page',
   standalone: true,
-  imports: [NgClass],
   templateUrl: './main-page.component.html',
   styleUrl: './main-page.component.css',
+  imports: [NgClass],
 })
 export class MainPageComponent {
-  constructor(
-    public timerService: TimerService,
-    public audioService: AudioService
-  ) {}
+  constructor(public audioService: AudioService) {}
+  ngOnInit() {
+    if (this.audioService.blob[0])
+      this.textButtons.bottomButton = 'Воспроизвести запись';
+  }
+  ngOnDestroy() {
+    this.audioService.revokeURL();
+  }
+  public recordTimerService: TimerService = new TimerService();
+  public playTimerService: TimerService = new TimerService();
   textButtons: ITextButtons = {
     topButton: 'Начать разговор',
     bottomButton: 'Нет записей',
@@ -24,13 +30,13 @@ export class MainPageComponent {
   async onClickTopButton() {
     if (this.audioService.isRecording) {
       this.audioService.stopRecord();
-      this.timerService.stop();
+      this.recordTimerService.stop();
       this.textButtons.topButton = 'Начать разговор';
     } else {
       try {
         const mediaStream = await this.audioService.startStream();
         this.audioService.startRecord(mediaStream);
-        this.timerService.start();
+        this.recordTimerService.start();
         this.textButtons.topButton = 'Окончить разговор';
         this.textButtons.bottomButton = 'Воспроизвести запись';
       } catch (error) {
@@ -42,9 +48,12 @@ export class MainPageComponent {
     if (!this.audioService.blob[0]) return;
     if (this.audioService.isPlaying) {
       this.audioService.stopPlay();
+      this.playTimerService.stop();
       this.textButtons.bottomButton = 'Воспроизвести запись';
     } else {
+      this.playTimerService.start();
       this.audioService.statPlay(() => {
+        this.playTimerService.stop();
         this.textButtons.bottomButton = 'Воспроизвести запись';
       });
       this.textButtons.bottomButton = 'Остановить воспроизведение';
