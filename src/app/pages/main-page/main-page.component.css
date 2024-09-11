@@ -17,5 +17,4 @@
 
 .active {
   background-color: var(--accent-color);
-  cursor: not-allowed;
 }

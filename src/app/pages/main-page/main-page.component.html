@@ -4,7 +4,18 @@
       <span> Timer: </span>
       {{ this.timerService.timer }}s
     </p>
-    <button class="active" (click)="this.start()">Начать разговор</button>
-    <button (click)="this.stop()">Окончить разговор</button>
+    <button
+      [ngClass]="{ active: this.audioService.isRecording }"
+      [disabled]="this.audioService.isRecording"
+      (click)="this.onClickTopButton()"
+    >
+      {{ this.textButtons.topButton }}
+    </button>
+    <button
+      [ngClass]="{ active: this.audioService.isPlaying }"
+      (click)="this.onClickBottomButton()"
+    >
+      {{ this.textButtons.bottomButton }}
+    </button>
   </div>
 </section>
