@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
+import { NgClass } from '@angular/common';
 
 import { TimerService } from '../../services/timer.service';
 import { AudioService } from '../../services/audio.service';
 import { ITextButtons } from '../../Models/Buttons';
-import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-main-page',
@@ -21,8 +21,8 @@ export class MainPageComponent {
   ngOnDestroy() {
     this.audioService.revokeURL();
   }
-  public recordTimerService: TimerService = new TimerService();
-  public playTimerService: TimerService = new TimerService();
+  recordTimerService: TimerService = new TimerService();
+  playTimerService: TimerService = new TimerService();
   textButtons: ITextButtons = {
     topButton: 'Начать разговор',
     bottomButton: 'Нет записей',
