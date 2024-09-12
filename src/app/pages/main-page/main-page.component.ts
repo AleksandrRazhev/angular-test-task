@@ -20,6 +20,10 @@ export class MainPageComponent {
   }
   ngOnDestroy() {
     this.audioService.revokeURL();
+    this.recordTimer.stop();
+    this.playTimer.stop();
+    if (this.audioService.isRecording) this.audioService.stopRecord();
+    if (this.audioService.isPlaying) this.audioService.stopPlay();
   }
   recordTimer: TimerService = new TimerService();
   playTimer: TimerService = new TimerService();
