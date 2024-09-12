@@ -21,8 +21,8 @@ export class MainPageComponent {
   ngOnDestroy() {
     this.audioService.revokeURL();
   }
-  recordTimerService: TimerService = new TimerService();
-  playTimerService: TimerService = new TimerService();
+  recordTimer: TimerService = new TimerService();
+  playTimer: TimerService = new TimerService();
   textButtons: ITextButtons = {
     topButton: 'Начать разговор',
     bottomButton: 'Нет записей',
@@ -30,13 +30,13 @@ export class MainPageComponent {
   async onClickTopButton() {
     if (this.audioService.isRecording) {
       this.audioService.stopRecord();
-      this.recordTimerService.stop();
+      this.recordTimer.stop();
       this.textButtons.topButton = 'Начать разговор';
     } else {
       try {
         const mediaStream = await this.audioService.startStream();
         this.audioService.startRecord(mediaStream);
-        this.recordTimerService.start();
+        this.recordTimer.start();
         this.textButtons.topButton = 'Окончить разговор';
         this.textButtons.bottomButton = 'Воспроизвести запись';
       } catch (error) {
@@ -48,12 +48,12 @@ export class MainPageComponent {
     if (!this.audioService.blob[0]) return;
     if (this.audioService.isPlaying) {
       this.audioService.stopPlay();
-      this.playTimerService.stop();
+      this.playTimer.stop();
       this.textButtons.bottomButton = 'Воспроизвести запись';
     } else {
-      this.playTimerService.start();
+      this.playTimer.start();
       this.audioService.statPlay(() => {
-        this.playTimerService.stop();
+        this.playTimer.stop();
         this.textButtons.bottomButton = 'Воспроизвести запись';
       });
       this.textButtons.bottomButton = 'Остановить воспроизведение';

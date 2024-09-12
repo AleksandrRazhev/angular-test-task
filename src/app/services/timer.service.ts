@@ -1,8 +1,3 @@
-import { Injectable } from '@angular/core';
-
-@Injectable({
-  providedIn: 'root',
-})
 export class TimerService {
   timer: number = 0;
   interval: ReturnType<typeof setTimeout> | null = null;

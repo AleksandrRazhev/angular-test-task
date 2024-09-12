@@ -1,8 +1,6 @@
 <section>
   <div class="record">
-    <p class="timer">
-      <span>Таймер записи: </span>{{ recordTimerService.timer }}s
-    </p>
+    <p class="timer"><span>Таймер записи: </span>{{ recordTimer.timer }}s</p>
     <button
       [ngClass]="{ active: audioService.isRecording }"
       [disabled]="audioService.isPlaying"
@@ -12,7 +10,7 @@
     </button>
     <p class="timer">
       <span>Таймер воспроизведения: </span>
-      {{ playTimerService.timer }}s
+      {{ playTimer.timer }}s
     </p>
     <button
       [ngClass]="{ active: audioService.isPlaying }"
