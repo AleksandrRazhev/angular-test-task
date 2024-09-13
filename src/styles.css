@@ -40,6 +40,12 @@ button {
   cursor: pointer;
 }
 
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
 .app {
   min-height: 95vh;
   display: grid;
@@ -48,5 +54,5 @@ button {
 
 .container {
   margin: 0 auto;
-  width: clamp(320px, 90vw, 1920px);
+  width: clamp(300px, 90vw, 1920px);
 }
