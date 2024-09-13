@@ -19,9 +19,8 @@ export class CallsService {
   saveCalls() {
     localStorage.setItem('calls', JSON.stringify(this.calls));
   }
-  removeCall(callId: number) {
-    const index = this.calls.findIndex(({ id }) => id === callId);
-    if (index > -1) this.calls.splice(index, 1);
+  removeCall(index: number) {
+    return this.calls.splice(index, 1);
   }
   addId(): number {
     if (!this.calls.length) return 1;

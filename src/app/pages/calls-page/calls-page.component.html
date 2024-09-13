@@ -1,1 +1,9 @@
-<p>calls-page works!</p>
+<section>
+  <h1 class="title">Список вызовов</h1>
+  <ul class="list">
+    <app-call-card
+      *ngFor="let call of callsService.calls"
+      [call]="call"
+    ></app-call-card>
+  </ul>
+</section>
