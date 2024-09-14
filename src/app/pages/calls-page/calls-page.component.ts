@@ -19,10 +19,8 @@ export class CallsPageComponent {
     //     'NewUserNewUserNewUserNewUserNewUserNewUserNewUserNewUserNewUserNewUserNewUserNewUser',
     //   timestampStart: Date.now(),
     //   timestampEnd: Date.now() + 10000,
-    //   callDuration: 10000,
     // });
     // this.callsService.saveCalls();
-    // this.callsService.removeCall(0);
   }
   ngOnDestroy() {}
   constructor(public callsService: CallsService) {}

@@ -17,7 +17,7 @@
   align-items: center;
 }
 
-.form > * {
+.form > *:first-child {
   flex-grow: 1;
 }
 
