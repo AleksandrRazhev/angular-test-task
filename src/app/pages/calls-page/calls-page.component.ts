@@ -14,13 +14,6 @@ import { CallCardComponent } from '../../components/shared/call-card/call-card.c
 export class CallsPageComponent {
   ngOnInit() {
     this.callsService.getAll();
-    // this.callsService.addCall({
-    //   username:
-    //     'NewUserNewUserNewUserNewUserNewUserNewUserNewUserNewUserNewUserNewUserNewUserNewUser',
-    //   timestampStart: Date.now(),
-    //   timestampEnd: Date.now() + 10000,
-    // });
-    this.callsService.saveCalls();
   }
   ngOnDestroy() {}
   constructor(public callsService: CallsService) {}
