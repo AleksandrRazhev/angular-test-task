@@ -7,3 +7,6 @@
     ></app-call-card>
   </ul>
 </section>
+<app-modal *ngIf="modalService.isOpen$ | async">
+  <h2>Modal Open</h2>
+</app-modal>
