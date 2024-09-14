@@ -20,7 +20,7 @@ export class CallsPageComponent {
     //   timestampStart: Date.now(),
     //   timestampEnd: Date.now() + 10000,
     // });
-    // this.callsService.saveCalls();
+    this.callsService.saveCalls();
   }
   ngOnDestroy() {}
   constructor(public callsService: CallsService) {}

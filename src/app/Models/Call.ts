@@ -1,5 +1,5 @@
 export interface Call extends NewCall {
-  id: number;
+  id: string;
   callType?: CallType;
 }
 
