@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NgClass } from '@angular/common';
 
-import { TimerService } from '../../services/timer.service';
+import { Timer } from '../../core/timer';
 import { AudioService } from '../../services/audio.service';
 import { ITextButtons } from '../../Models/Buttons';
 import { NewCall } from '../../Models/Call';
@@ -33,8 +33,8 @@ export class MainPageComponent {
     if (this.audioService.isRecording) this.audioService.stopRecord();
     if (this.audioService.isPlaying) this.audioService.stopPlay();
   }
-  recordTimer: TimerService = new TimerService();
-  playTimer: TimerService = new TimerService();
+  recordTimer: Timer = new Timer();
+  playTimer: Timer = new Timer();
   textButtons: ITextButtons = {
     topButton: 'Начать разговор',
     bottomButton: 'Нет записей',

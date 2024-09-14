@@ -1,4 +1,4 @@
-export class TimerService {
+export class Timer {
   timer: number = 0;
   interval: ReturnType<typeof setTimeout> | null = null;
   start() {
