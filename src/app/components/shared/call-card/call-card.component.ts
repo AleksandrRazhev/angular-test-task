@@ -4,6 +4,7 @@ import dayjs from 'dayjs';
 
 import { Call, CallType } from '../../../Models/Call';
 import { CallsService } from '../../../services/calls.service';
+import { ModalService } from '../../../services/modal.service';
 
 @Component({
   selector: 'app-call-card',
@@ -13,7 +14,10 @@ import { CallsService } from '../../../services/calls.service';
   styleUrl: './call-card.component.css',
 })
 export class CallCardComponent {
-  constructor(private callsService: CallsService) {}
+  constructor(
+    private callsService: CallsService,
+    public modalService: ModalService
+  ) {}
   @Input() call!: Call;
   form = new FormGroup({
     inputValue: new FormControl<string>(''),
