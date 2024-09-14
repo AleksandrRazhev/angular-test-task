@@ -24,8 +24,6 @@ export class CallsPageComponent {
     // this.callsService.saveCalls();
     // this.callsService.removeCall(0);
   }
-  ngOnDestroy() {
-    console.log(this.callsService.calls);
-  }
+  ngOnDestroy() {}
   constructor(public callsService: CallsService) {}
 }

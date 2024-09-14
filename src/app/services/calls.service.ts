@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Call, CallType, NewCall } from '../Models/Call';
+import { Call, NewCall } from '../Models/Call';
 
 @Injectable({
   providedIn: 'root',
@@ -19,14 +19,16 @@ export class CallsService {
   saveCalls() {
     localStorage.setItem('calls', JSON.stringify(this.calls));
   }
-  removeCall(index: number) {
-    return this.calls.splice(index, 1);
+  removeCall(id: number) {
+    const index = this.calls.findIndex((call) => call.id === id);
+    if (index > -1) this.calls.splice(index, 1);
   }
   addId(): number {
     if (!this.calls.length) return 1;
     return this.calls[this.calls.length - 1].id + 1;
   }
-  addCallType(index: number, callType: CallType) {
-    return (this.calls[index].callType = callType);
+  addCallType({ id, callType }: Pick<Call, 'id' | 'callType'>) {
+    const index = this.calls.findIndex((call) => call.id === id);
+    if (index > -1) this.calls[index].callType = callType;
   }
 }

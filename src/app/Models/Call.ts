@@ -10,4 +10,4 @@ export interface NewCall {
   callDuration: number;
 }
 
-export type CallType = 'A' | 'B' | 'C' | 'D';
+export type CallType = 'a' | 'b' | 'c' | 'd';

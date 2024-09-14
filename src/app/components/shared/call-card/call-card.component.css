@@ -10,5 +10,25 @@
   width: 100%;
   padding: 0.5rem 0;
   overflow-wrap: break-word;
-  /* word-wrap: break-word; */
+}
+
+.form {
+  display: flex;
+  align-items: center;
+}
+
+.form > * {
+  flex-grow: 1;
+}
+
+.form > *:not(:last-child) {
+  margin-right: 1rem;
+}
+
+.type {
+  text-transform: capitalize;
+}
+
+.input {
+  max-width: 3rem;
 }

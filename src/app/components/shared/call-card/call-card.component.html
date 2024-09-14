@@ -1,6 +1,20 @@
 <li class="card">
   <p class="card-item">ФИО: {{ call.username }}</p>
-  <span>{{ call.timestampStart / 1000 }}</span>
-  <span>{{ call.timestampEnd }}</span>
-  <span>{{ call.callDuration }}</span>
+  <p class="card-item">Начало: {{ getFormattedDate(call.timestampStart) }}</p>
+  <p class="card-item">Конец: {{ getFormattedDate(call.timestampEnd) }}</p>
+  <p class="card-item">Длительность: {{ callDuration }}s</p>
+  <form class="card-item form" [formGroup]="form">
+    <span class="type">
+      Тип звонка:
+      {{ call.callType }}
+    </span>
+    <input
+      class="input"
+      (input)="onInputChange()"
+      type="text"
+      formControlName="inputValue"
+    />
+    <button>+</button>
+  </form>
+  <button (click)="removeCall()">удалить</button>
 </li>
