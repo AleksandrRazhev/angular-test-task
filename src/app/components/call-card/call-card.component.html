@@ -5,15 +5,15 @@
   </p>
   <p class="card-item">
     <span class="description">Начало разговора: </span>
-    <span>{{ getFormattedDate(call.timestampStart) }}</span>
+    <span>{{ call.timestampStart | date : "HH:mm:ss dd.MM.yy" }}</span>
   </p>
   <p class="card-item">
     <span class="description">Конец разговора: </span>
-    <span>{{ getFormattedDate(call.timestampEnd) }}</span>
+    <span>{{ call.timestampEnd | date : "HH:mm:ss dd.MM.yy" }}</span>
   </p>
   <p class="card-item">
     <span class="description">Длительность разговора: </span>
-    <span>{{ callDuration }}s</span>
+    <span>{{ callDuration }}</span>
   </p>
   <form class="card-item form" [formGroup]="form">
     <span class="description">Тип звонка: </span>

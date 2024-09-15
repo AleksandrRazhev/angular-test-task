@@ -1,16 +1,16 @@
 import { Component, Input } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import dayjs from 'dayjs';
 
 import { Call, CallType } from '../../Models/Call';
 import { CallsService } from '../../services/calls.service';
 import { ModalService } from '../../services/modal.service';
 import { TypeSelectionService } from '../../services/type-selection.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-call-card',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './call-card.component.html',
   styleUrl: './call-card.component.css',
 })
@@ -40,17 +40,14 @@ export class CallCardComponent {
     this.callsService.removeCall(this.call.id);
     this.callsService.saveCalls();
   }
-  getFormattedDate(timestamp: number) {
-    return dayjs(timestamp).format('HH:mm.ss DD.MM.YYг');
-  }
   openModal() {
     this.typeSelectionService.setId(this.call.id);
     this.modalService.open();
   }
   get callDuration() {
-    return dayjs(this.call.timestampEnd).diff(
-      this.call.timestampStart,
-      'seconds'
-    );
+    const duration = this.call.timestampEnd - this.call.timestampStart;
+    const minutes = Math.floor((duration % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((duration % (1000 * 60)) / 1000);
+    return `${minutes}мин. ${seconds}сек.`;
   }
 }
