@@ -4,15 +4,15 @@
     <span>{{ call.username }}</span>
   </p>
   <p class="card-item">
-    <span class="description">Начало: </span>
+    <span class="description">Начало разговора: </span>
     <span>{{ getFormattedDate(call.timestampStart) }}</span>
   </p>
   <p class="card-item">
-    <span class="description">Конец: </span>
+    <span class="description">Конец разговора: </span>
     <span>{{ getFormattedDate(call.timestampEnd) }}</span>
   </p>
   <p class="card-item">
-    <span class="description">Длительность: </span>
+    <span class="description">Длительность разговора: </span>
     <span>{{ callDuration }}s</span>
   </p>
   <form class="card-item form" [formGroup]="form">
