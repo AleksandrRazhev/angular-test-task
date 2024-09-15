@@ -24,7 +24,6 @@ export class MainPageComponent {
   ngOnInit() {
     if (this.audioService.blob[0])
       this.textButtons.bottomButton = 'Воспроизвести запись';
-    this.callsService.getAll();
   }
   ngOnDestroy() {
     this.audioService.revokeURL();

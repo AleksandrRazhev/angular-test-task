@@ -7,13 +7,9 @@ import { Call, NewCall } from '../Models/Call';
   providedIn: 'root',
 })
 export class CallsService {
-  constructor() {}
-  calls: Call[] = [];
-  getAll(): Call[] {
-    const calls = localStorage.getItem('calls');
-    if (!calls) return (this.calls = []);
-    return (this.calls = JSON.parse(calls));
-  }
+  calls: Call[] = localStorage.getItem('calls')
+    ? JSON.parse(localStorage.getItem('calls') as string)
+    : [];
   addCall(call: NewCall) {
     this.calls.push({ id: v4(), ...call });
   }

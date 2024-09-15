@@ -20,9 +20,6 @@ import { TypeSelectionComponent } from '../../components/type-selection/type-sel
   styleUrl: './calls-page.component.css',
 })
 export class CallsPageComponent {
-  ngOnInit() {
-    this.callsService.getAll();
-  }
   ngOnDestroy() {}
   constructor(
     public callsService: CallsService,
