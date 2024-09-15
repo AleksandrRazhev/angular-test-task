@@ -2,9 +2,10 @@ import { Component, Input } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import dayjs from 'dayjs';
 
-import { Call, CallType } from '../../../Models/Call';
-import { CallsService } from '../../../services/calls.service';
-import { ModalService } from '../../../services/modal.service';
+import { Call, CallType } from '../../Models/Call';
+import { CallsService } from '../../services/calls.service';
+import { ModalService } from '../../services/modal.service';
+import { TypeSelectionService } from '../../services/type-selection.service';
 
 @Component({
   selector: 'app-call-card',
@@ -16,7 +17,8 @@ import { ModalService } from '../../../services/modal.service';
 export class CallCardComponent {
   constructor(
     private callsService: CallsService,
-    public modalService: ModalService
+    private typeSelectionService: TypeSelectionService,
+    private modalService: ModalService
   ) {}
   @Input() call!: Call;
   form = new FormGroup({
@@ -40,6 +42,10 @@ export class CallCardComponent {
   }
   getFormattedDate(timestamp: number) {
     return dayjs(timestamp).format('HH:mm.ss - DD.MM.YYг');
+  }
+  openModal() {
+    this.typeSelectionService.setId(this.call.id);
+    this.modalService.open();
   }
   get callDuration() {
     return dayjs(this.call.timestampEnd).diff(

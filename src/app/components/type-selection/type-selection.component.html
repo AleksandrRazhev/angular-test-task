@@ -1,0 +1,22 @@
+<form class="form" [formGroup]="form" (ngSubmit)="submit()">
+  <label class="label"
+    ><span>A - вызов машиниста</span
+    ><input class="radio" type="radio" formControlName="callType" value="a"
+  /></label>
+  <label class="label">
+    <span>B - вызов скорой помощи</span>
+    <input class="radio" type="radio" formControlName="callType" value="b"
+  /></label>
+  <label class="label">
+    <span>C - вызов МЧС</span>
+    <input class="radio" type="radio" formControlName="callType" value="c"
+  /></label>
+  <label class="label">
+    <span>D - вызов полиции</span>
+    <input class="radio" type="radio" formControlName="callType" value="d"
+  /></label>
+  <div class="buttons">
+    <button>Сохранить</button>
+    <button (click)="clear()" type="button">Очистить</button>
+  </div>
+</form>
