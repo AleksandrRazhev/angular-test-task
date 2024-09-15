@@ -1,7 +1,7 @@
 .card {
   padding: 0.5rem;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
   border-radius: 0.25rem;
   border: 1px solid black;
 }
@@ -31,4 +31,42 @@
 
 .input {
   max-width: 3rem;
+}
+
+.description {
+  display: inline;
+}
+
+@media (min-width: 768px) {
+  .card {
+    padding: 0 0.5rem;
+    grid-template-columns: var(--call-grid-template);
+    align-items: center;
+    border: none;
+    border-radius: 0;
+    background-color: var(--additional-color);
+  }
+
+  .card-item {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .description {
+    display: none;
+  }
+
+  .button {
+    padding: 0.25rem;
+    align-self: center;
+  }
+
+  .form {
+    padding-right: 2rem;
+    justify-content: end;
+  }
+
+  .type {
+    flex-grow: 1;
+  }
 }

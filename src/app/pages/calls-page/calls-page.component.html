@@ -1,6 +1,14 @@
 <section>
   <h1 class="title">Список вызовов</h1>
   <ul class="list">
+    <div class="list-header">
+      <p class="list-header-item">ФИО</p>
+      <p class="list-header-item">Начало</p>
+      <p class="list-header-item">Конец</p>
+      <p class="list-header-item">Длительность</p>
+      <p class="list-header-item">Тип</p>
+      <p class="list-header-item">Удалить</p>
+    </div>
     <app-call-card
       *ngFor="let call of callsService.calls"
       [call]="call"

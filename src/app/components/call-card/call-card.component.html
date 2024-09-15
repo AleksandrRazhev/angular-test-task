@@ -1,20 +1,30 @@
 <li class="card">
-  <p class="card-item">ФИО: {{ call.username }}</p>
-  <p class="card-item">Начало: {{ getFormattedDate(call.timestampStart) }}</p>
-  <p class="card-item">Конец: {{ getFormattedDate(call.timestampEnd) }}</p>
-  <p class="card-item">Длительность: {{ callDuration }}s</p>
+  <p class="card-item">
+    <span class="description">ФИО: </span>
+    <span>{{ call.username }}</span>
+  </p>
+  <p class="card-item">
+    <span class="description">Начало: </span>
+    <span>{{ getFormattedDate(call.timestampStart) }}</span>
+  </p>
+  <p class="card-item">
+    <span class="description">Конец: </span>
+    <span>{{ getFormattedDate(call.timestampEnd) }}</span>
+  </p>
+  <p class="card-item">
+    <span class="description">Длительность: </span>
+    <span>{{ callDuration }}s</span>
+  </p>
   <form class="card-item form" [formGroup]="form">
-    <span class="type">
-      Тип звонка:
-      {{ call.callType }}
-    </span>
+    <span class="description">Тип звонка: </span>
+    <span class="type"> {{ call.callType }} </span>
     <input
       class="input"
       (input)="onInputChange()"
       type="text"
       formControlName="inputValue"
     />
-    <button (click)="openModal()">+</button>
+    <button class="button" (click)="openModal()">+</button>
   </form>
-  <button (click)="removeCall()">удалить</button>
+  <button class="button" (click)="removeCall()">удалить</button>
 </li>

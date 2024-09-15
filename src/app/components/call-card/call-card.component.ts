@@ -41,7 +41,7 @@ export class CallCardComponent {
     this.callsService.saveCalls();
   }
   getFormattedDate(timestamp: number) {
-    return dayjs(timestamp).format('HH:mm.ss - DD.MM.YYг');
+    return dayjs(timestamp).format('HH:mm.ss DD.MM.YYг');
   }
   openModal() {
     this.typeSelectionService.setId(this.call.id);

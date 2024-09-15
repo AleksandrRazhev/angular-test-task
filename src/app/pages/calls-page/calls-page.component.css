@@ -2,8 +2,26 @@
   text-align: center;
 }
 
-.list > *:not(:last-child) {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 1rem;
+.list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.list-header {
+  padding: 0 0.5rem;
+  display: none;
+  grid-template-columns: var(--call-grid-template);
+}
+
+.list-header-item {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+@media (min-width: 768px) {
+  .list-header {
+    display: grid;
+  }
 }

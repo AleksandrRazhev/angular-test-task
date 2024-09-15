@@ -10,6 +10,7 @@
   --additional-color: #a4a7bc;
   --hover-color: #495aa8;
   --error-color: #ff2f3b;
+  --call-grid-template: 3fr 1.5fr 1.5fr 1fr 2.5fr 1.5fr;
 }
 
 * {
