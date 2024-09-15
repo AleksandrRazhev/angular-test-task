@@ -28,14 +28,13 @@ export class UserService {
     localStorage.setItem('users', JSON.stringify(this.users));
   }
   saveCurrentUser(user: User) {
-    localStorage.setItem('currentUser', JSON.stringify(user));
+    localStorage.setItem('currentUser', user.username);
   }
   deleteCurrentUser() {
     localStorage.removeItem('currentUser');
   }
   get currentUserName(): string {
     const storedUser = localStorage.getItem('currentUser');
-    if (storedUser) return (JSON.parse(storedUser) as User)?.username ?? '';
-    return '';
+    return storedUser ?? '';
   }
 }
