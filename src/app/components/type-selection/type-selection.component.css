@@ -1,23 +1,14 @@
 .form {
-  display: flex;
-  flex-direction: column;
+  display: grid;
   align-items: center;
+  grid-template-columns: 1fr;
 }
 
 .label {
   margin: 0;
-  width: 100%;
-  display: flex;
+  display: grid;
   align-items: center;
-  justify-content: space-between;
-}
-
-.label > *:first-child {
-  margin-right: 1rem;
-}
-
-.radio {
-  width: auto;
+  grid-template-columns: 2rem 1fr 2rem;
 }
 
 .buttons {

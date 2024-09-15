@@ -1,18 +1,22 @@
 <form class="form" [formGroup]="form" (ngSubmit)="submit()">
-  <label class="label"
-    ><span>A - вызов машиниста</span
-    ><input class="radio" type="radio" formControlName="callType" value="a"
+  <label class="label">
+    <p>A</p>
+    <p>Вызов машиниста</p>
+    <input class="radio" type="radio" formControlName="callType" value="a"
   /></label>
   <label class="label">
-    <span>B - вызов скорой помощи</span>
+    <p>B</p>
+    <p>Вызов скорой помощи</p>
     <input class="radio" type="radio" formControlName="callType" value="b"
   /></label>
   <label class="label">
-    <span>C - вызов МЧС</span>
+    <p>C</p>
+    <p>Вызов МЧС</p>
     <input class="radio" type="radio" formControlName="callType" value="c"
   /></label>
   <label class="label">
-    <span>D - вызов полиции</span>
+    <p>D</p>
+    <p>Вызов полиции</p>
     <input class="radio" type="radio" formControlName="callType" value="d"
   /></label>
   <div class="buttons">
