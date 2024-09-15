@@ -6,7 +6,7 @@ import { User } from '../Models/User';
   providedIn: 'root',
 })
 export class UserService {
-  users: User[] | null = localStorage.getItem('users')
+  users: User[] = localStorage.getItem('users')
     ? JSON.parse(localStorage.getItem('users') as string)
     : [];
   authorization(user: User): boolean {
@@ -19,7 +19,7 @@ export class UserService {
     return false;
   }
   addUser(user: User) {
-    if (!this.users) return (this.users = [user]);
+    if (!this.users.length) return this.users.push(user);
     if (this.users.find(({ username }) => username === user.username)) return;
     return this.users.push(user);
   }
