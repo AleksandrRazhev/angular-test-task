@@ -6,12 +6,9 @@ import { User } from '../Models/User';
   providedIn: 'root',
 })
 export class UserService {
-  users: User[] | null = null;
-  getAll() {
-    const users = localStorage.getItem('users');
-    if (!users) return (this.users = null);
-    return (this.users = JSON.parse(users));
-  }
+  users: User[] | null = localStorage.getItem('users')
+    ? JSON.parse(localStorage.getItem('users') as string)
+    : [];
   authorization(user: User): boolean {
     if (!this.users) return true;
     const storedUser = this.users.find(

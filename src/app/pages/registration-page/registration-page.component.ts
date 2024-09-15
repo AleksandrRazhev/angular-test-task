@@ -20,7 +20,6 @@ import { AuthGuardService } from '../../services/auth-guard.service';
 })
 export class RegistrationPageComponent {
   ngOnInit() {
-    this.userService.getAll();
     this.form.controls.username.setValue(this.userService.currentUserName);
   }
 
@@ -41,7 +40,6 @@ export class RegistrationPageComponent {
     const { username, password } = this.form.value;
     if (!username || !password) return;
     const user = { username, password };
-    this.userService.getAll();
     if (this.userService.authorization(user)) {
       this.userService.addUser(user);
       this.userService.saveUsers();
